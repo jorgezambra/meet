@@ -7,7 +7,7 @@ describe('<NumberOfEvents /> component', () => {
   let NumberOfEventsWrapper;
 
   beforeAll(() => {
-    NumberOfEventsWrapper = shallow(<NumberOfEvents />);
+    NumberOfEventsWrapper = shallow(<NumberOfEvents updateEvents={() => { }} />);
   });
 
   test('render the number of elements div', () => {
@@ -15,7 +15,7 @@ describe('<NumberOfEvents /> component', () => {
   });
 
   test('render textbox element', () => {
-    expect(NumberOfEventsWrapper.find('.textbox')).toHaveLength(1);
+    expect(NumberOfEventsWrapper.find('.numberOfEvents')).toHaveLength(1);
   });
 
   test('ensure default number of events is set', () => {
@@ -28,7 +28,7 @@ describe('<NumberOfEvents /> component', () => {
     });
 
     const eventNumber = { target: { value: 10 } };
-    NumberOfEventsWrapper.find('.textbox').simulate('change', eventNumber);
+    NumberOfEventsWrapper.find('.numberOfEvents').simulate('change', eventNumber);
     expect(NumberOfEventsWrapper.state('numberofevents')).toBe(10);
   });
 
