@@ -11,7 +11,7 @@ describe('<NumberOfEvents /> component', () => {
   });
 
   test('render the number of elements div', () => {
-    expect(NumberOfEventsWrapper.find('.EventsNumber')).toHaveLength(1);
+    expect(NumberOfEventsWrapper.find('.eventsNumber')).toHaveLength(1);
   });
 
   test('render textbox element', () => {
@@ -32,4 +32,4 @@ describe('<NumberOfEvents /> component', () => {
     expect(NumberOfEventsWrapper.state('numberofevents')).toBe(10);
   });
 
-}); 
+});

@@ -15,9 +15,9 @@ class NumberOfEvents extends Component {
 
   render() {
     return (
-      <div className="EventsNumber">
+      <div className="eventsNumber">
         <label htmlFor='numberOfEvent'># of Events: </label>
-        <input type="text" className="textbox"
+        <input type="text" className="numberOfEvents"
           value={this.state.numberofevents}
           onChange={this.changeEventNumber}
         ></input>
@@ -27,4 +27,4 @@ class NumberOfEvents extends Component {
 
 }
 
-export default NumberOfEvents; 
+export default NumberOfEvents;
