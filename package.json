@@ -7,14 +7,11 @@
     "@testing-library/jest-dom": "^5.11.6",
     "@testing-library/react": "^11.2.2",
     "@testing-library/user-event": "^12.2.2",
-    "atatus-spa": "^4.3.2",
-    "axios": "^0.21.1",
+    "axios": "^0.21.0",
     "nprogress": "^0.2.0",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-scripts": "4.0.1",
-    "react-service-worker": "^0.1.1",
-    "serviceworker-webpack-plugin": "^1.0.1",
     "web-vitals": "^0.2.4"
   },
   "scripts": {
