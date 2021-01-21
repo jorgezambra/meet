@@ -11,7 +11,7 @@ class App extends Component {
     events: [],
     locations: [],
     numberofevents: 32,
-    currentLocation: 'all'
+    currentLocation: 'all',
   }
 
   updateEvents = (location, eventCount) => {
@@ -30,7 +30,7 @@ class App extends Component {
     }
     else {
       getEvents().then((events) => {
-        const locationEvents = (location === 'all') ?
+        const locationEvents = (currentLocation === 'all') ?
           events :
           events.filter((event) => event.location === currentLocation);
         const filterEvents = locationEvents.slice(0, eventCount);
