@@ -9,14 +9,14 @@ class NumberOfEvents extends Component {
   }
 
   changeEventNumber = (event) => {
-  if(event.target.value >= 1 && event.target.value <= 32) {
+  if(event.target.value <= 32) {
     this.setState({
       numberofevents: event.target.value,
       errorNumber: ''
     });
   } else {
     return this.setState({
-        numberofevents: null,
+        numberofevents: event.target.value,
         errorNumber: 'Number must be between 1 and 32'
       });
     }

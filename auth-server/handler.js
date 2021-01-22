@@ -33,8 +33,7 @@ module.exports.getAuthURL = async () => {
   return {
     statusCode: 200,
     headers: {
-      'Access-Control-Allow-Origin': '*',
-      "Access-Control-Allow-Credentials": true,
+      'Access-Control-Allow-Origin': '*'
     },
     body: JSON.stringify({
       authUrl: authUrl,
@@ -69,11 +68,7 @@ module.exports.getAccessToken = async (event) => {
       // Respond with OAuth token
       return {
         statusCode: 200,
-        headers: {
-          "Access-Control-Allow-Origin": "*",
-          "Access-Control-Allow-Credentials": true,
-        },
-      body: JSON.stringify(token),
+        body: JSON.stringify(token),
       };
     })
     .catch((err) => {
@@ -96,9 +91,14 @@ module.exports.getCalendarEvents = async (event) => {
   // Get authorization code from the URL query
   const access_token = decodeURIComponent(`${event.pathParameters.access_token}`);
 
-  oAuth2Client.setCredentials({ access_token });
-
   return new Promise((resolve, reject) => {
+    /**
+     *  Exchange authorization code for access token with a “callback” after the exchange,
+     *  The callback in this case is an arrow function with the results as parameters: “err” and “token.”
+     */
+
+    oAuth2Client.setCredentials({ access_token });
+
     calendar.events.list(
       {
         calendarId: calendar_id,
@@ -113,19 +113,15 @@ module.exports.getCalendarEvents = async (event) => {
         } else {
           resolve(response);
         }
-      });
+      }
+    );
+
   })
     .then((results) => {
       // Respond with OAuth token
       return {
         statusCode: 200,
-        headers: {
-          "Access-Control-Allow-Origin": "*",
-          "Access-Control-Allow-Credentials": true,
-        },
-        body: JSON.stringify({
-          events: results.data.items,
-         }),
+        body: JSON.stringify({ events: results.data.items }),
       };
     })
     .catch((err) => {
@@ -133,9 +129,6 @@ module.exports.getCalendarEvents = async (event) => {
       console.error(err);
       return {
         statusCode: 500,
-        headers: {
-       "Access-Control-Allow-Origin": "*",
-     },
         body: JSON.stringify(err),
       };
     });
