@@ -5,16 +5,23 @@ import CitySearch from './CitySearch';
 import NumberOfEvents from './NumberOfEvents';
 import { getEvents, extractLocations } from './api';
 import "./nprogress.css";
+import { OfflineAlert } from './Alert';
 
 class App extends Component {
   state = {
     events: [],
     locations: [],
     numberofevents: 32,
-    currentLocation: 'all'
+    currentLocation: 'all',
+    alertInfo: '',
   }
 
   updateEvents = (location, eventCount) => {
+    if(!navigator.onLine){
+      this.setState({
+        alertInfo: 'You are offline, to update data, connect to the internet'
+      });
+    }
     const { currentLocation, numberofevents } = this.state;
     if (location) {
       getEvents().then((events) => {
@@ -59,6 +66,8 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+        <h2>Meet App</h2>
+        <OfflineAlert text={this.state.alertInfo} />
         <CitySearch locations={this.state.locations} updateEvents={this.updateEvents} />
         <br></br>
         <NumberOfEvents numberofevents={this.state.numberofevents} updateEvents={this.updateEvents} />

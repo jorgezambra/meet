@@ -16,7 +16,7 @@ export const getAccessToken = async () => {
     await localStorage.removeItem("access_token");
     const searchParams = new URLSearchParams(window.location.search);
     const code = await searchParams.get("code");
-    
+
     if (!code) {
       const results = await axios.get(
         "https://5is6ijksjc.execute-api.us-east-1.amazonaws.com/dev/api/get-auth-url"
@@ -47,6 +47,14 @@ export const getEvents = async () => {
     return mockData;
   }
 
+  if (!navigator.onLine) {
+      const events = localStorage.getItem("lastEvents");
+      NProgress.done();
+      return {
+        events: JSON.parse(events).events,
+        locations: extractLocations(JSON.parse(events).events),
+      };
+    }
 
   const token = await getAccessToken();
 
