@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "firebase-functions": "^3.13.1",
     "googleapis": "^59.0.0"
   }
 }
